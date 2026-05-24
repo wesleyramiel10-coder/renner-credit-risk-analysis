@@ -1,0 +1,67 @@
+CREATE TABLE doc_variaveis_projeto AS
+SELECT 'liquidez_corrente' AS variavel, 'mart_balance_sheet_indicators_lag' AS tabela_principal, 'Balanço / Liquidez' AS tema, 'Mede a relação entre ativo circulante e passivo circulante. Indica folga de curto prazo.' AS descricao, 'Quanto maior, melhor. No projeto, ajuda a avaliar capacidade de curto prazo da Renner.' AS interpretacao
+UNION ALL SELECT 'caixa_sobre_ativo', 'mart_balance_sheet_indicators_lag', 'Balanço / Liquidez', 'Percentual do ativo total composto por caixa e aplicações.', 'Queda pode indicar menor colchão de liquidez.'
+UNION ALL SELECT 'recebiveis_sobre_ativo', 'mart_balance_sheet_indicators_lag', 'Balanço / Ativos', 'Percentual do ativo total concentrado em contas a receber.', 'Quanto maior, maior dependência da conversão da carteira em caixa.'
+UNION ALL SELECT 'estoques_sobre_ativo', 'mart_balance_sheet_indicators_lag', 'Balanço / Ativos', 'Percentual do ativo total concentrado em estoques.', 'Ajuda a avaliar capital empatado em estoque.'
+UNION ALL SELECT 'passivo_sobre_pl', 'mart_balance_sheet_indicators_lag', 'Balanço / Estrutura de Capital', 'Relação entre passivo circulante e patrimônio líquido.', 'Ajuda a avaliar pressão de passivos frente ao capital próprio.'
+
+UNION ALL SELECT 'receita_operacional_liquida', 'mart_income_statement_indicators_lag', 'DRE / Receita', 'Receita líquida da operação no período.', 'Base para margens, crescimento e análise operacional.'
+UNION ALL SELECT 'receita_operacional_liquida_var_12m', 'mart_income_statement_indicators_lag', 'DRE / Crescimento', 'Variação da receita líquida contra o mesmo trimestre do ano anterior.', 'Mostra crescimento ou retração anual.'
+UNION ALL SELECT 'margem_bruta', 'mart_income_statement_indicators_lag', 'DRE / Margem', 'Lucro bruto dividido pela receita operacional líquida.', 'Mede rentabilidade após custos de vendas e serviços.'
+UNION ALL SELECT 'margem_operacional', 'mart_income_statement_indicators_lag', 'DRE / Margem', 'Lucro operacional antes do resultado financeiro dividido pela receita.', 'Mede eficiência operacional.'
+UNION ALL SELECT 'margem_liquida', 'mart_income_statement_indicators_lag', 'DRE / Margem', 'Lucro líquido dividido pela receita operacional líquida.', 'Mede quanto da receita vira lucro final.'
+UNION ALL SELECT 'perdas_credito_sobre_receita', 'mart_income_statement_indicators_lag', 'DRE / Crédito', 'Perdas em crédito divididas pela receita operacional líquida.', 'Mostra o peso das perdas de crédito no resultado.'
+
+UNION ALL SELECT 'ebitda_total_ajustado', 'mart_ebitda_indicators_lag', 'EBITDA', 'EBITDA total ajustado da companhia.', 'Proxy de geração operacional ajustada.'
+UNION ALL SELECT 'margem_ebitda_total_ajustado', 'mart_ebitda_indicators_lag', 'EBITDA / Margem', 'EBITDA total ajustado dividido pela receita de referência.', 'Mede eficiência operacional ajustada.'
+UNION ALL SELECT 'ebitda_total_ajustado_var_12m', 'mart_ebitda_indicators_lag', 'EBITDA / Tendência', 'Variação anual do EBITDA total ajustado.', 'Mostra se a geração operacional está crescendo ou caindo.'
+UNION ALL SELECT 'ebitda_ajustado_varejo', 'mart_ebitda_indicators_lag', 'EBITDA / Varejo', 'EBITDA ajustado da operação de varejo.', 'Ajuda a separar força do varejo da operação financeira.'
+UNION ALL SELECT 'ebitda_servicos_financeiros', 'mart_ebitda_indicators_lag', 'EBITDA / Serviços Financeiros', 'EBITDA dos serviços financeiros.', 'Mostra contribuição da operação financeira.'
+
+UNION ALL SELECT 'caixa_operacional', 'mart_cash_flow_indicators_lag', 'Fluxo de Caixa', 'Caixa líquido gerado pelas atividades operacionais.', 'Mostra se a operação gera caixa.'
+UNION ALL SELECT 'fluxo_caixa_livre', 'mart_cash_flow_indicators_lag', 'Fluxo de Caixa', 'Caixa operacional somado ao CAPEX.', 'Indica caixa livre após investimentos.'
+UNION ALL SELECT 'caixa_fim_periodo', 'mart_cash_flow_indicators_lag', 'Fluxo de Caixa / Liquidez', 'Caixa e equivalentes no fim do período.', 'Mostra liquidez disponível no fechamento.'
+UNION ALL SELECT 'caixa_fim_periodo_var_12m', 'mart_cash_flow_indicators_lag', 'Fluxo de Caixa / Tendência', 'Variação anual do caixa final.', 'Queda forte pode indicar alerta de liquidez.'
+UNION ALL SELECT 'caixa_operacional_sobre_lucro', 'mart_cash_flow_indicators_lag', 'Fluxo de Caixa / Conversão', 'Caixa operacional dividido pelo lucro líquido.', 'Mostra se lucro vira caixa.'
+UNION ALL SELECT 'capex_sobre_caixa_operacional', 'mart_cash_flow_indicators_lag', 'Fluxo de Caixa / Investimento', 'CAPEX dividido pelo caixa operacional.', 'Mostra quanto do caixa operacional é consumido por investimento.'
+
+UNION ALL SELECT 'carteira_total_cartoes', 'mart_accounts_receivables_indicators_lag', 'Carteira / Exposição', 'Soma da carteira total dos cartões analisados.', 'Base para medir exposição de crédito.'
+UNION ALL SELECT 'vencidos_total', 'mart_accounts_receivables_indicators_lag', 'Carteira / Inadimplência', 'Total de valores vencidos na carteira.', 'Proxy direta de inadimplência bruta.'
+UNION ALL SELECT 'a_vencer_total', 'mart_accounts_receivables_indicators_lag', 'Carteira / Exposição', 'Total de valores ainda a vencer.', 'Parte da carteira ainda não vencida.'
+UNION ALL SELECT 'perdas_estimadas_total', 'mart_accounts_receivables_indicators_lag', 'Carteira / Provisão', 'Total de perdas estimadas em crédito.', 'Proxy de provisão esperada.'
+UNION ALL SELECT 'vencidos_sobre_carteira', 'mart_accounts_receivables_indicators_lag', 'Carteira / Bad Ratio', 'Vencidos divididos pela carteira total.', 'Principal proxy de inadimplência da carteira.'
+UNION ALL SELECT 'perdas_estimadas_sobre_carteira', 'mart_accounts_receivables_indicators_lag', 'Carteira / Provisão', 'Perdas estimadas divididas pela carteira total.', 'Mostra nível de provisão em relação à carteira.'
+UNION ALL SELECT 'cobertura_vencidos', 'mart_accounts_receivables_indicators_lag', 'Carteira / Cobertura', 'Perdas estimadas divididas pelos vencidos.', 'Indica quanto dos vencidos está coberto por provisão.'
+
+UNION ALL SELECT 'npl_formation', 'mart_npl_formation_indicators_lag', 'NPL / Formação', 'Formação de novos créditos problemáticos.', 'Ajuda a medir entrada de risco novo na carteira.'
+UNION ALL SELECT 'npl_formation_sobre_carteira', 'mart_npl_formation_indicators_lag', 'NPL / Formação', 'NPL formation dividido pela carteira total.', 'Normaliza a formação de NPL pelo tamanho da carteira.'
+UNION ALL SELECT 'vencidos_estagio_3', 'mart_npl_formation_indicators_lag', 'NPL / Severidade', 'Valores vencidos classificados em estágio 3.', 'Indica parcela mais severa da carteira.'
+UNION ALL SELECT 'estagio_3_sobre_vencidos', 'mart_npl_formation_indicators_lag', 'NPL / Severidade', 'Stage 3 dividido pelo total de vencidos.', 'Mostra a severidade dos vencidos.'
+UNION ALL SELECT 'write_off', 'mart_npl_formation_indicators_lag', 'NPL / Perda', 'Baixas/write-off de créditos.', 'Mostra créditos baixados como perda.'
+UNION ALL SELECT 'pdd', 'mart_npl_formation_indicators_lag', 'NPL / Provisão', 'Provisão para devedores duvidosos.', 'Mostra nível de provisão contábil.'
+UNION ALL SELECT 'recuperacoes', 'mart_npl_formation_indicators_lag', 'NPL / Recuperação', 'Recuperações de crédito.', 'Mostra capacidade de recuperar créditos problemáticos.'
+UNION ALL SELECT 'perdas_liquidas_sobre_carteira', 'mart_npl_formation_indicators_lag', 'NPL / Perda Líquida', 'Perdas líquidas divididas pela carteira.', 'Proxy de perda efetiva relativa.'
+
+UNION ALL SELECT 'bad_ratio_vencidos', 'mart_bad_ratio', 'Bad Ratio', 'Vencidos divididos pela carteira total.', 'Proxy ampla de carteira ruim.'
+UNION ALL SELECT 'bad_ratio_stage_3', 'mart_bad_ratio', 'Bad Ratio / Severidade', 'Stage 3 dividido pela carteira total.', 'Proxy de carteira ruim severa.'
+UNION ALL SELECT 'bad_ratio_perdas_liquidas', 'mart_bad_ratio', 'Bad Ratio / Perda', 'Perdas líquidas divididas pela carteira total.', 'Proxy de perda realizada.'
+
+UNION ALL SELECT 'score_carteira_credito', 'mart_company_credit_rating_v2', 'Score / Carteira', 'Score heurístico da carteira de crédito.', 'Quanto maior, pior o risco da carteira.'
+UNION ALL SELECT 'rating_carteira_credito', 'mart_company_credit_rating_v2', 'Rating / Carteira', 'Classificação textual do risco da carteira.', 'Resume o risco da carteira em A, B, C ou D.'
+UNION ALL SELECT 'score_financeiro_pj', 'mart_company_credit_rating_v2', 'Score / PJ', 'Score heurístico da performance financeira da empresa.', 'Quanto maior, pior a pressão financeira PJ.'
+UNION ALL SELECT 'classificacao_financeira_pj', 'mart_company_credit_rating_v2', 'Rating / PJ', 'Classificação da força financeira da empresa.', 'Indica PJ forte, moderado ou pressionado.'
+UNION ALL SELECT 'score_total_consolidado', 'mart_company_credit_rating_v2', 'Score / Consolidado', 'Soma do score da carteira com score financeiro PJ.', 'Base para rating consolidado.'
+UNION ALL SELECT 'rating_consolidado', 'mart_company_credit_rating_v2', 'Rating / Consolidado', 'Rating final empresa + carteira.', 'Principal classificação de risco consolidado.'
+UNION ALL SELECT 'origem_principal_risco', 'mart_company_credit_rating_v2', 'Interpretação', 'Identifica se o risco vem da carteira, PJ ou ambos.', 'Ajuda no storytelling da análise.'
+
+UNION ALL SELECT 'selic_media_tri', 'mart_macro_features', 'Macro / Juros', 'Média trimestral da Selic Meta.', 'Juros altos pressionam crédito e consumo.'
+UNION ALL SELECT 'ipca_acum_12m', 'mart_macro_features', 'Macro / Inflação', 'IPCA acumulado em 12 meses.', 'Inflação alta pressiona poder de compra.'
+UNION ALL SELECT 'inadimplencia_pf_total', 'mart_macro_features', 'Macro / Crédito PF', 'Inadimplência de pessoa física no mercado.', 'Proxy da inadimplência do consumidor no sistema.'
+UNION ALL SELECT 'inadimplencia_pf_total_delta_12m', 'mart_macro_features', 'Macro / Tendência Crédito PF', 'Variação anual da inadimplência PF.', 'Mostra se a inadimplência do mercado está piorando.'
+UNION ALL SELECT 'comprometimento_renda_familias', 'mart_macro_features', 'Macro / Renda', 'Comprometimento da renda das famílias com dívida.', 'Quanto maior, mais pressionado o consumidor.'
+UNION ALL SELECT 'endividamento_familias', 'mart_macro_features', 'Macro / Dívida', 'Endividamento das famílias.', 'Mostra nível de dívida das famílias.'
+UNION ALL SELECT 'score_pressao_macro', 'mart_macro_features', 'Score / Macro', 'Score simples de pressão macroeconômica.', 'Quanto maior, mais adverso o cenário macro.'
+UNION ALL SELECT 'classificacao_macro', 'mart_macro_features', 'Macro / Classificação', 'Classificação textual do cenário macro.', 'Indica macro favorável, em atenção ou pressionada.'
+
+UNION ALL SELECT 'leitura_carteira_vs_macro', 'mart_credit_macro_features', 'Interpretação / Carteira vs Macro', 'Compara risco da carteira com pressão macro.', 'Ajuda a entender se a carteira piorou em ambiente macro adverso.'
+UNION ALL SELECT 'leitura_executiva_periodo', 'mart_master_renner_credit_analysis', 'Interpretação Final', 'Leitura executiva consolidada do período.', 'Resumo narrativo para dashboard e relatório.';

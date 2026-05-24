@@ -1,0 +1,30 @@
+CREATE TABLE doc_tabelas_projeto AS
+SELECT 'raw_balance_sheet' AS tabela, 'raw' AS camada, 'Balanço Patrimonial' AS tema, 'Tabela bruta importada do Excel com dados do balanço patrimonial.' AS descricao, 'Consulta técnica / auditoria da fonte original' AS uso_recomendado
+UNION ALL SELECT 'raw_income_statement', 'raw', 'DRE', 'Tabela bruta importada do Excel com demonstração de resultado.', 'Consulta técnica / auditoria da fonte original'
+UNION ALL SELECT 'raw_cash_flow', 'raw', 'Fluxo de Caixa', 'Tabela bruta importada do Excel com fluxo de caixa.', 'Consulta técnica / auditoria da fonte original'
+UNION ALL SELECT 'raw_ebitda', 'raw', 'EBITDA', 'Tabela bruta importada do Excel com reconciliação de EBITDA.', 'Consulta técnica / auditoria da fonte original'
+UNION ALL SELECT 'raw_accounts_receivables', 'raw', 'Recebíveis', 'Tabela bruta importada do Excel com dados de contas a receber e carteira.', 'Consulta técnica / auditoria da fonte original'
+UNION ALL SELECT 'raw_npl_formation', 'raw', 'NPL / Crédito', 'Tabela bruta importada do Excel com formação de NPL, write-off, PDD e recuperações.', 'Consulta técnica / auditoria da fonte original'
+UNION ALL SELECT 'raw_macro_bcb', 'raw', 'Macroeconomia', 'Tabela bruta baixada via Python da API SGS do Banco Central.', 'Auditar séries macro baixadas'
+
+UNION ALL SELECT 'stg_balance_sheet_long', 'stg', 'Balanço Patrimonial', 'Balanço em formato longo, com período, conta e valor.', 'Base intermediária para montar indicadores de balanço'
+UNION ALL SELECT 'stg_income_statement_long', 'stg', 'DRE', 'DRE em formato longo, com período, conta e valor.', 'Base intermediária para montar indicadores de resultado'
+UNION ALL SELECT 'stg_cash_flow_long', 'stg', 'Fluxo de Caixa', 'Fluxo de caixa em formato longo, com período, conta e valor.', 'Base intermediária para montar indicadores de caixa'
+UNION ALL SELECT 'stg_ebitda_long', 'stg', 'EBITDA', 'EBITDA em formato longo, com período, conta e valor.', 'Base intermediária para montar indicadores de EBITDA'
+UNION ALL SELECT 'stg_accounts_receivables_long', 'stg', 'Recebíveis', 'Contas a receber em formato longo.', 'Base intermediária para carteira e recebíveis'
+UNION ALL SELECT 'stg_npl_formation_long', 'stg', 'NPL / Crédito', 'NPL em formato longo.', 'Base intermediária para indicadores de severidade e inadimplência'
+UNION ALL SELECT 'stg_macro_quarterly', 'stg', 'Macroeconomia', 'Séries macro convertidas para periodicidade trimestral.', 'Base intermediária para cruzar macro com Renner'
+
+UNION ALL SELECT 'mart_balance_sheet_indicators_lag', 'mart', 'Balanço Patrimonial', 'Indicadores de balanço com variações trimestrais e 12 meses.', 'Consultar liquidez, caixa, recebíveis, estoques e estrutura patrimonial'
+UNION ALL SELECT 'mart_income_statement_indicators_lag', 'mart', 'DRE', 'Indicadores de resultado, margens, perdas de crédito e variações 12M.', 'Consultar receita, lucro, margens e perdas de crédito'
+UNION ALL SELECT 'mart_cash_flow_indicators_lag', 'mart', 'Fluxo de Caixa', 'Indicadores de geração de caixa, fluxo de caixa livre e variações 12M.', 'Consultar caixa operacional, FCL e caixa final'
+UNION ALL SELECT 'mart_ebitda_indicators_lag', 'mart', 'EBITDA', 'Indicadores de EBITDA ajustado, margem EBITDA e variações 12M.', 'Consultar geração operacional ajustada'
+UNION ALL SELECT 'mart_accounts_receivables_indicators_lag', 'mart', 'Recebíveis / Carteira', 'Indicadores de carteira, vencidos, perdas estimadas e cobertura.', 'Consultar vencidos, carteira total, perdas estimadas e cobertura'
+UNION ALL SELECT 'mart_npl_formation_indicators_lag', 'mart', 'NPL / Severidade', 'Indicadores de NPL, Stage 3, write-off, PDD, recuperações e perdas líquidas.', 'Consultar severidade da carteira e formação de inadimplência'
+UNION ALL SELECT 'mart_bad_ratio', 'mart', 'Bad Ratio', 'Tabela com proxies de bad ratio: vencidos, Stage 3 e perdas líquidas.', 'Consultar qualidade da carteira de crédito'
+UNION ALL SELECT 'mart_score_rating', 'mart', 'Score Carteira', 'Score heurístico de risco da carteira de crédito.', 'Consultar rating da carteira'
+UNION ALL SELECT 'mart_financial_performance_features_v2', 'mart', 'Performance PJ', 'Tabela de performance financeira da empresa com DRE, caixa e EBITDA.', 'Consultar força operacional da Renner'
+UNION ALL SELECT 'mart_company_credit_rating_v2', 'mart', 'Rating Consolidado', 'Tabela que junta carteira e performance PJ para gerar rating consolidado.', 'Consultar rating consolidado empresa + carteira'
+UNION ALL SELECT 'mart_macro_features', 'mart', 'Macroeconomia', 'Tabela com variáveis macro, flags e score de pressão macro.', 'Consultar cenário macroeconômico'
+UNION ALL SELECT 'mart_credit_macro_features', 'mart', 'Empresa + Carteira + Macro', 'Tabela que junta rating da Renner com cenário macro.', 'Analisar se a carteira piorou junto com a macro'
+UNION ALL SELECT 'mart_master_renner_credit_analysis', 'mart_master', 'Tabela Mestre', 'Tabela mestre completa com empresa, carteira, NPL, bad ratio, macro, scores e leituras executivas.', 'Principal tabela para Power BI, Python e storytelling';
