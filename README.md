@@ -318,7 +318,7 @@ Demonstra experiência prática em:
 
 Power BI | SQL | Python | Analytics | Credit Risk
 
-LinkedIn: *(adicione seu link)*
+LinkedIn: [*(adicione seu link)*](https://www.linkedin.com/in/wesleyramiel/)
 
 ---
 
